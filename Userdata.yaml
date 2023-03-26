@@ -1,0 +1,23 @@
+min_articles_to_retain_per_website: 30
+refresh_time_interval: 3600 #in seconds
+
+sites:
+  raspberrypi: https://www.raspberrypi.com/news/feed/
+  linuxserver: https://www.linuxserver.io/blog.atom
+  techwiser: https://www.techwiser.com/feed
+  noted: https://noted.lol/rss
+  alyx: https://alyx.at/feed/
+  techburner: https://techburner.in/feed/
+  enchantedcode: https://enchantedcode.co.uk/blog/feed.xml
+  console: https://console.substack.com/feed
+  alexgallacher: https://alexgallacher.com/rss/
+  networkprofile: https://blog.networkprofile.org/rss/
+  tcude: https://tcude.net/rss/
+  ktz: https://blog.ktz.me/rss/
+  felix: https://blog.9wd.eu/index.xml
+  hackaday: https://hackaday.com/feed/
+  hackspaceRaspberryPI: https://hackspace.raspberrypi.com/feed
+  hackernews: https://feeds.feedburner.com/TheHackersNews
+  alex: https://alexgallacher.com/rss/
+  selfhostedcorner: https://selfhostcorner.com/rss
+  learnubuntu: https://learnubuntu.com/rss/

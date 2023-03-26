@@ -1,0 +1,163 @@
+{% extends "layout.html" %} {% block HtmlbodyContent %}
+
+<div class="container" style="margin-top: 50px">
+  <div class="row">
+    <button class="col" id="previousBTNid1" onclick="previousPageNumber()">
+      Previous page
+    </button>
+    <button class="col" id="nextBTNid1" onclick="nextPageNumber()">
+      Next page
+    </button>
+    <div class="dropdown me-5 text-end col">
+      <button
+        class="btn btn-secondary dropdown-toggle"
+        type="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        Sort
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end">
+        <li>
+          <a class="dropdown-item {{ latestActive }}" href="/sortlatest/page/1"
+            >Latest</a
+          >
+        </li>
+        <li>
+          <a class="dropdown-item {{ oldestActive }}" href="/sortoldest/page/1"
+            >Oldest</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <br />
+
+  {% for post in posts %}
+  <div class="col me-5">
+    <div class="card">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <svg
+            class="bd-placeholder-img"
+            width="100%"
+            height="250"
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            aria-label="Placeholder: Image"
+            preserveAspectRatio="xMidYMid slice"
+            focusable="false"
+          >
+            <title>Placeholder</title>
+            <rect width="100%" height="100%" fill="#868e96" />
+            <text x="41%" y="50%" fill="#dee2e6" dy=".3em">
+              {{ post.site }}
+            </text>
+          </svg>
+        </div>
+        <div class="col-md-8">
+          <div class="card-header">{{ post.site }}</div>
+          <div class="card-body">
+            <h5 class="card-title">{{ post.title }}</h5>
+            <p class="card-text">{{ post.summary }}</p>
+            <p class="card-text">
+              <small class="text-muted">
+                {% if " " not in post.pub_day and " " not in post.author %}
+                <p>
+                  By {{ post.author }} On {{ post.pub_day }} {{ post.pub_date }}
+                  {{ post.pub_month }} {{ post.pub_year }}
+                </p>
+
+                {% elif " " not in post.pub_day %}
+                <p>
+                  On {{ post.pub_day }} {{ post.pub_date }} {{ post.pub_month }}
+                  {{ post.pub_year }}
+                </p>
+
+                {% elif " " not in post.author %}
+                <p>By {{ post.author }}</p>
+
+                {% else %}
+                <p></p>
+
+                {% endif %}
+              </small>
+            </p>
+            <a
+              href="{{ post.link }}"
+              target="_blank"
+              rel="noreferrer noopener"
+              class="btn btn-primary"
+              >Visit</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+  {% endfor %}
+
+  <div class="container row" style="margin-bottom: 30px">
+    <button class="col" id="previousBTNid2" onclick="previousPageNumber()">
+      Previous page
+    </button>
+    <button class="col" id="nextBTNid2" onclick="nextPageNumber()">
+      Next page
+    </button>
+  </div>
+</div>
+
+<script>
+  // Get the current URL
+  var currentURL = window.location.href;
+
+  // Extract the page number from the URL
+  var pageNumber = parseInt(currentURL.split("/")[5]);
+  var sortingType = currentURL.split("/")[3];
+
+  var previousbutton1 = document.getElementById("previousBTNid1");
+  var nextbutton1 = document.getElementById("nextBTNid1");
+  var previousbutton2 = document.getElementById("previousBTNid2");
+  var nextbutton2 = document.getElementById("nextBTNid2");
+
+  if (pageNumber === 1) {
+    previousbutton1.disabled = true;
+  }
+
+  if (pageNumber === {{ total_pages }}) {
+        nextbutton1.disabled = true;
+    }
+
+  if (pageNumber === 1) {
+    previousbutton2.disabled = true;
+  }
+
+  if (pageNumber === {{ total_pages }}) {
+        nextbutton2.disabled = true;
+    }
+
+  function previousPageNumber() {
+    // Construct the new URL with the updated page number
+    var newURL = currentURL.replace(
+      "/" + sortingType + "/page/" + pageNumber,
+      "/" + sortingType + "/page/" + (pageNumber - 1)
+    );
+
+    // Update the URL in the browser
+    window.location.href = newURL;
+  }
+
+  function nextPageNumber() {
+    // Construct the new URL with the updated page number
+    var newURL = currentURL.replace(
+      "/" + sortingType + "/page/" + pageNumber,
+      "/" + sortingType + "/page/" + (pageNumber + 1)
+    );
+
+    // Update the URL in the browser
+    window.location.href = newURL;
+  }
+</script>
+{% endblock HtmlbodyContent%}

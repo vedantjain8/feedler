@@ -1,0 +1,9 @@
+test*.*
+temp*.*
+__pycache__/*
+logs/*
+venv
+rss.db
+sqldiff.exe
+sqlite3_analyzer.exe
+sqlite3.exe
