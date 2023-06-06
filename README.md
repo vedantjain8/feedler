@@ -18,8 +18,8 @@ Feedler is a web application that allows users to easily fetch RSS feeds from va
 
 
 ### Installation
-1. git clone https://github.com/vedantjain8/rss-fetch.git
-2. cd rss-fetch
+1. git clone https://github.com/vedantjain8/feedler.git
+2. cd feedler
 3. Edit Userdata.yaml to add site for rss fetching
 
 ### Run
